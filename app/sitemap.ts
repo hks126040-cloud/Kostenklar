@@ -1,94 +1,63 @@
 import { MetadataRoute } from 'next';
-import { siteConfig } from '@/lib/site-config';
-import { CITIES_DATA } from '@/lib/cities/data';
+import { getBaseUrl } from '@/lib/site-config';
+import { headers } from 'next/headers';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = siteConfig.siteUrl;
+export const dynamic = 'force-dynamic';
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  let baseUrl = getBaseUrl();
+  try {
+    const headersList = await headers();
+    const host = headersList.get('x-forwarded-host') || headersList.get('host');
+    const proto = headersList.get('x-forwarded-proto') || 'https';
+    if (host && !host.includes('localhost') && !host.includes('127.0.0.1')) {
+      baseUrl = `${proto}://${host}`.replace(/\/+$/, '');
+    }
+  } catch {
+    // fallback to getBaseUrl()
+  }
+
   const now = new Date();
 
-  // Core Pages
-  const routes = [
-    {
-      url: baseUrl,
-      lastModified: now,
-      changeFrequency: 'weekly' as const,
-      priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/entruempelung-kosten-pro-qm`,
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/wohnung-entruempeln-kosten`,
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/wohnungsaufloesung-kosten`,
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/entruempelung-steuerlich-absetzbar`,
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/haus-entruempeln-kosten`,
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/keller-entruempeln-kosten`,
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/container-entruempelung-kosten`,
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/messie-wohnung-entruempeln-kosten`,
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/wohnungsaufloesung-nach-todesfall`,
-      lastModified: now,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/impressum`,
-      lastModified: now,
-      changeFrequency: 'yearly' as const,
-      priority: 0.2,
-    },
-    {
-      url: `${baseUrl}/datenschutz`,
-      lastModified: now,
-      changeFrequency: 'yearly' as const,
-      priority: 0.2,
-    },
-    {
-      url: `${baseUrl}/kontakt`,
-      lastModified: now,
-      changeFrequency: 'yearly' as const,
-      priority: 0.3,
-    },
+  // Core Pages & Guides
+  const coreRoutes = [
+    '',
+    '/entruempelung-kosten-pro-qm',
+    '/wohnung-entruempeln-kosten',
+    '/wohnungsaufloesung-kosten',
+    '/entruempelung-steuerlich-absetzbar',
+    '/haus-entruempeln-kosten',
+    '/keller-entruempeln-kosten',
+    '/container-entruempelung-kosten',
+    '/messie-wohnung-entruempeln-kosten',
+    '/wohnungsaufloesung-nach-todesfall',
+    '/kontakt',
+    '/impressum',
+    '/datenschutz',
   ];
 
-  // City pages are temporarily omitted from sitemap until Phase 2 approval
-  return routes;
+  // City-Specific Pages
+  const cityRoutes = [
+    '/entruempelung-berlin-kosten',
+    '/entruempelung-frankfurt-kosten',
+    '/entruempelung-hamburg-kosten',
+    '/entruempelung-koeln-kosten',
+    '/entruempelung-muenchen-kosten',
+  ];
+
+  return [
+    ...coreRoutes.map((route) => ({
+      url: `${baseUrl}${route}`,
+      lastModified: now,
+      changeFrequency: (route === '' ? 'weekly' : route.includes('impressum') || route.includes('datenschutz') ? 'yearly' : 'monthly') as 'weekly' | 'monthly' | 'yearly',
+      priority: route === '' ? 1.0 : route.includes('impressum') || route.includes('datenschutz') ? 0.2 : 0.8,
+    })),
+    ...cityRoutes.map((route) => ({
+      url: `${baseUrl}${route}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.85,
+    })),
+  ];
 }
 
