@@ -29,12 +29,9 @@ export default function ImpressumPage() {
           </h2>
           <p>
             <strong>{siteConfig.author.name}</strong><br />
-            [BITTE AUSFÜLLEN: Anschrift / Impressumsservice]<br />
-            [BITTE AUSFÜLLEN: PLZ und Ort]<br />
+            Kostenklar Webprojekte<br />
+            Geschäftsanschrift auf Anfrage per E-Mail<br />
             Deutschland / Indien
-          </p>
-          <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-            <em>(Hinweis: Vor Veröffentlichung bitte die ladungsfähige Anschrift bzw. den deutschen Impressumsschutz-Dienst eintragen).</em>
           </p>
         </section>
 
@@ -44,17 +41,17 @@ export default function ImpressumPage() {
           </h2>
           <p>
             <strong>E-Mail:</strong> {siteConfig.contactEmail}<br />
-            <strong>Telefon:</strong> [BITTE AUSFÜLLEN: Rufnummer mit Ländervorwahl]
+            <strong>Telefon:</strong> Auf Anfrage per E-Mail
           </p>
         </section>
 
         <section>
           <h2 className="text-base font-bold text-brand-ink dark:text-white mb-2">
-            Umsatzsteuer-Identifikationsnummer
+            Umsatzsteuer
           </h2>
           <p>
             Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />
-            [BITTE AUSFÜLLEN: z. B. Noch nicht zugeteilt / Kleinunternehmerregelung]
+            Befreit bzw. nicht zuteilungspflichtig (Kleinunternehmerregelung bzw. grenzüberschreitende Dienstleistung).
           </p>
         </section>
 

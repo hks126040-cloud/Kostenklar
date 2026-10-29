@@ -15,12 +15,7 @@ if (rawSiteUrl) {
 
 // Build-time legal assertion:
 // Fail production build if Impressum still contains "[BITTE AUSFÜLLEN" when NODE_ENV=production and noindex is OFF
-const isNoIndexActive =
-  process.env.NEXT_PUBLIC_NOINDEX === 'true' ||
-  !rawSiteUrl ||
-  rawSiteUrl.includes('vercel.app') ||
-  rawSiteUrl.includes('kostenklar.de') ||
-  rawSiteUrl.includes('localhost');
+const isNoIndexActive = process.env.NEXT_PUBLIC_NOINDEX === 'true';
 
 if (process.env.NODE_ENV === 'production' && !isNoIndexActive) {
   const impressumPath = path.join(process.cwd(), 'app', 'impressum', 'page.tsx');

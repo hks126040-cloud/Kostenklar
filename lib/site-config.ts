@@ -29,18 +29,11 @@ export function getBaseUrl(): string {
 
 /**
  * Global noindex switch:
- * Returns true if deployed on vercel.app or if NEXT_PUBLIC_NOINDEX is set to 'true'.
- * When true, entire site receives noindex, nofollow, robots.txt blocks all, and sitemap is omitted.
+ * Returns true only if NEXT_PUBLIC_NOINDEX is explicitly set to 'true'.
+ * When false, the site is fully indexable by search engines (index, follow).
  */
 export function isNoIndexActive(): boolean {
-  if (process.env.NEXT_PUBLIC_NOINDEX === 'true') {
-    return true;
-  }
-  const currentBase = getBaseUrl();
-  if (currentBase.includes('vercel.app')) {
-    return true;
-  }
-  return false;
+  return process.env.NEXT_PUBLIC_NOINDEX === 'true';
 }
 
 /**
@@ -89,7 +82,7 @@ const contactEmail =
 
 export const siteConfig = {
   name: 'Kostenklar',
-  legalName: 'Himanshu Kumar [PRÜFEN: Ggf. Firmenname / Impressumsservice]',
+  legalName: 'Himanshu Kumar',
   domain: resolvedDomain,
   siteUrl: activeBaseUrl,
   description:
