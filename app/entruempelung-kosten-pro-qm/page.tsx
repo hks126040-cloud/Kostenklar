@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { ContentLayout } from '@/components/content/ContentLayout';
 import { CompactCalculatorCTA } from '@/components/calculator/CompactCalculatorCTA';
 import { ResponsivePriceTable } from '@/components/ResponsiveTable';
+import { siteConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Entrümpelung Kosten pro m²: Preistabelle 2026',
@@ -9,6 +10,12 @@ export const metadata: Metadata = {
     'Was kostet eine Entrümpelung pro qm? Alle Quadratmeterpreise nach Füllgrad, Keller & Wohnung im Überblick. Inklusive Berechnungsformel & Spartipps.',
   alternates: {
     canonical: '/entruempelung-kosten-pro-qm',
+  },
+  openGraph: {
+    title: 'Entrümpelung Kosten pro m²: Preistabelle 2026 | Kostenklar',
+    description:
+      'Was kostet eine Entrümpelung pro qm? Alle Quadratmeterpreise nach Füllgrad, Keller & Wohnung im Überblick. Inklusive Berechnungsformel & Spartipps.',
+    url: '/entruempelung-kosten-pro-qm',
   },
 };
 
@@ -47,7 +54,7 @@ export default function Page() {
       description="Übersichtliche Richtwerte nach Füllgrad, Kubikmeter-Umrechnung und transparente Preisfaktoren für Haus, Wohnung und Keller."
       breadcrumbLabel="Kosten pro m²"
       slug="entruempelung-kosten-pro-qm"
-      lastUpdated="März 2026"
+      lastUpdated={siteConfig.lastUpdatedDate}
       readingTime="6 Min."
       faqs={faqs}
     >

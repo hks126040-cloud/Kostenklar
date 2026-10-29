@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { ContentLayout } from '@/components/content/ContentLayout';
 import { CompactCalculatorCTA } from '@/components/calculator/CompactCalculatorCTA';
 import { ResponsiveTaxTable } from '@/components/ResponsiveTable';
+import { siteConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Entrümpelung steuerlich absetzen (§35a EStG)',
@@ -9,6 +10,12 @@ export const metadata: Metadata = {
     'Entrümpelungskosten von der Steuer absetzen: 20% sparen nach § 35a EStG. Voraussetzungen, Lohnkosten-Aufteilung, Musterrechnung & Finanzamt-Tipps.',
   alternates: {
     canonical: '/entruempelung-steuerlich-absetzbar',
+  },
+  openGraph: {
+    title: 'Entrümpelung steuerlich absetzen (§35a EStG) | Kostenklar',
+    description:
+      'Entrümpelungskosten von der Steuer absetzen: 20% sparen nach § 35a EStG. Voraussetzungen, Lohnkosten-Aufteilung, Musterrechnung & Finanzamt-Tipps.',
+    url: '/entruempelung-steuerlich-absetzbar',
   },
 };
 
@@ -26,7 +33,8 @@ const faqs = [
   {
     question: 'Wie hoch ist die maximale Steuerersparnis?',
     answer:
-      'Sie können 20 % der Arbeitskosten absetzen, bis zu einem jährlichen Höchstbetrag von maximal 4.000 Euro Steuerersparnis (auf Basis von maximal 20.000 € Arbeitslohn).',
+      // TODO: [PRÜFEN] Steuerberater / BMF-Schreiben prüfen: Abgrenzung haushaltsnahe Dienstleistung (§ 35a Abs. 2 EStG, max. 4.000 € Ermäßigung) vs. Handwerkerleistung (§ 35a Abs. 3 EStG, max. 1.200 € Ermäßigung).
+      'Sie können 20 % der reinen Arbeitskosten absetzen. Je nachdem, ob das Finanzamt die Maßnahme als haushaltsnahe Dienstleistung oder Handwerkerleistung einordnet, liegt der jährliche Höchstbetrag der Steuerermäßigung zwischen maximal 1.200 Euro und 4.000 Euro pro Jahr.',
   },
   {
     question: 'Kann ein Vermieter die Entrümpelung auch absetzen?',
@@ -36,7 +44,7 @@ const faqs = [
   {
     question: 'Was muss auf der Rechnung stehen?',
     answer:
-      'Die Handwerkerrechnung muss die Lohnkosten und die Material-/Deponiekosten zwingend in getrennten Positionen oder mit prozentualer Aufteilung ausweisen.',
+      'Die Dienstleister- bzw. Handwerkerrechnung muss die reinen Lohnkosten und die Material-/Deponiekosten zwingend in getrennten Positionen oder mit prozentualer Aufteilung ausweisen.',
   },
 ];
 
@@ -47,7 +55,7 @@ export default function Page() {
       description="Leitfaden für Steuerzahler: Voraussetzungen des Finanzamts, Lohnkosten-Aufteilung, Ausschluss von Barzahlungen und eine konkrete Musterrechnung."
       breadcrumbLabel="Steuerabzug §35a"
       slug="entruempelung-steuerlich-absetzbar"
-      lastUpdated="März 2026"
+      lastUpdated={siteConfig.lastUpdatedDate}
       readingTime="6 Min."
       faqs={faqs}
     >

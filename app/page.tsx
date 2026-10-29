@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
 import { CalculatorWizard } from '@/components/calculator/Wizard';
 import { HomepageJsonLd, FaqJsonLd } from '@/components/seo/JsonLd';
 import { InternalLinks } from '@/components/seo/InternalLinks';
@@ -11,6 +10,12 @@ export const metadata: Metadata = {
     'Was kostet eine Entrümpelung? Berechnen Sie realistische Kosten nach m² & Etage. Kostenloser Rechner mit Spartipps, §35a Steuervorteil & Richtwerten.',
   alternates: {
     canonical: '/',
+  },
+  openGraph: {
+    title: 'Entrümpelung Kosten Rechner 2026: Jetzt Kosten online berechnen',
+    description:
+      'Was kostet eine Entrümpelung? Berechnen Sie realistische Kosten nach m² & Etage. Kostenloser Rechner mit Spartipps, §35a Steuervorteil & Richtwerten.',
+    url: '/',
   },
 };
 
@@ -33,12 +38,14 @@ const HOMEPAGE_FAQS = [
   {
     question: 'Wer zahlt die Entrümpelung nach einem Todesfall?',
     answer:
-      'Rechtlich sind die Erben verpflichtet, die Kosten der Nachlassräumung als Rechtsnachfolger zu tragen. Die Kosten können jedoch in der Regel als Nachlassverbindlichkeiten steuermindernd bei der Erbschaftsteuer geltend gemacht werden.',
+      // TODO: [PRÜFEN] Rechtliche Kostentragungspflicht und Nachlassverbindlichkeiten nach § 1967 BGB / § 10 Abs. 5 ErbStG hängen von Erbantritt, Ausschlagung und Nachlasshöhe ab.
+      'Die Kostentragungspflicht kann je nach Einzelfall, Erbantritt oder Nachlasssituation variieren (z. B. bei Erbausschlagung). Sofern ein Erbe angetreten wird, können die Räumungskosten unter bestimmten Voraussetzungen im Rahmen der Erbschaftsteuererklärung als Nachlassverbindlichkeit geltend gemacht werden (Einzelfallprüfung durch Steuerberater empfohlen).',
   },
   {
     question: 'Kann ich eine Entrümpelung von der Steuer absetzen?',
     answer:
-      'Ja, nach § 35a EStG für haushaltsnahe Dienstleistungen können 20 % der reinen Arbeitskosten (ohne Deponiegebühren), maximal bis zu 4.000 Euro pro Jahr, direkt von der Einkommensteuerschuld abgezogen werden. Unbare Zahlung per Banküberweisung ist zwingend erforderlich.',
+      // TODO: [PRÜFEN] Steuerberater / BMF-Schreiben prüfen: Abgrenzung haushaltsnahe Dienstleistung (§ 35a Abs. 2 EStG, max. 4.000 € Ermäßigung) vs. Handwerkerleistung (§ 35a Abs. 3 EStG, max. 1.200 € Ermäßigung).
+      'Ja, Entrümpelungskosten können nach § 35a EStG für haushaltsnahe Dienstleistungen oder Handwerkerleistungen mit 20 % der reinen Arbeitskosten steuermindernd geltend gemacht werden (je nach Einordnung max. 1.200 € bis 4.000 € Ersparnis pro Jahr). Voraussetzung ist eine getrennte Ausweisung der Lohnkosten und unbare Zahlung per Banküberweisung.',
   },
   {
     question: 'Was kostet ein Entrümpelungs-Container?',
@@ -67,7 +74,7 @@ export default function HomePage() {
       <section className="relative overflow-hidden bg-gradient-to-b from-white to-brand-soft py-12 sm:py-16 dark:from-brand-ink dark:to-[#08142A]">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 text-center">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-brand/10 px-3.5 py-1 text-xs font-bold text-brand dark:bg-brand/20 dark:text-blue-300">
-            ✓ 100% Unabhängig & Kostenlos
+            ✓ Kostenlos &amp; unverbindlich
           </span>
 
           <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-brand-ink dark:text-white sm:text-5xl lg:text-6xl">
@@ -76,7 +83,7 @@ export default function HomePage() {
 
           <p className="mt-4 text-base text-body-slate dark:text-gray-300 sm:text-lg max-w-2xl mx-auto leading-relaxed">
             Berechnen Sie transparente Preisschätzungen nach Quadratmetern, Etage und Füllgrad.
-            Ermitteln Sie Richtwerte deutscher Fachbetriebe und fordern Sie kostenlose Vergleichsangebote an.
+            Ermitteln Sie marktübliche Orientierungswerte und fordern Sie unverbindliche Angebote geprüfter Fachpartner an.
           </p>
 
           {/* Calculator Wizard Component Above the Fold */}
@@ -99,8 +106,8 @@ export default function HomePage() {
           </h2>
           <p className="mt-3 text-sm sm:text-base text-body-slate dark:text-gray-300 leading-relaxed">
             Die Gesamtkosten einer Entrümpelung hängen maßgeblich von der Wohnfläche, dem Füllgrad
-            des Hausrats und der Zugänglichkeit ab. Die folgende Tabelle bietet verlässliche
-            Richtwerte für besenreine Räumungen in Deutschland:
+            des Hausrats und der Zugänglichkeit ab. Die folgende Tabelle bietet marktübliche
+            Orientierungswerte für besenreine Räumungen in Deutschland:
           </p>
 
           <ResponsivePriceTable
@@ -219,10 +226,10 @@ export default function HomePage() {
           <h2 className="mt-1 text-2xl font-bold text-brand-ink dark:text-white sm:text-3xl">
             Entrümpelung nach § 35a EStG steuerlich absetzen
           </h2>
+          {/* TODO: [PRÜFEN] Steuerliche Detailprüfung: Abgrenzung haushaltsnahe Dienstleistungen (§ 35a Abs. 2 EStG, max. 4.000 €) vs. Handwerkerleistungen (§ 35a Abs. 3 EStG, max. 1.200 €). Entrümpelung hängt von den konkreten Tätigkeiten ab. */}
           <p className="mt-3 text-sm text-body-slate dark:text-gray-300 leading-relaxed">
             Als Privatperson können Sie <strong>20 % der reinen Arbeitskosten</strong> (ohne
-            Deponiegebühren), maximal bis zu <strong>4.000 Euro pro Jahr</strong>, direkt von Ihrer
-            Einkommensteuer abziehen.
+            Deponiegebühren) steuermindernd geltend machen (je nach Einordnung als haushaltsnahe Dienstleistung bis zu <strong>4.000 €</strong> bzw. als Handwerkerleistung bis zu <strong>1.200 €</strong> Steuerermäßigung pro Jahr).
           </p>
 
           <div className="mt-6 rounded-xl sm:rounded-2xl bg-white p-4 sm:p-5 shadow-sm dark:bg-brand-ink border border-brand-line dark:border-brand-darkLine">
@@ -246,8 +253,8 @@ export default function HomePage() {
           </div>
 
           <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-            * Hinweis: Voraussetzung ist eine getrennt ausgewiesene Handwerkerrechnung und unbare
-            Zahlung per Banküberweisung. Keine Steuerberatung.
+            * Hinweis: Voraussetzung ist eine getrennt ausgewiesene Dienstleister- bzw. Handwerkerrechnung und unbare
+            Zahlung per Banküberweisung. Die steuerliche Anerkennung obliegt dem zuständigen Finanzamt im Einzelfall. Keine Steuerberatung.
           </p>
         </section>
 

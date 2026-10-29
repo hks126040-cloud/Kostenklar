@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { siteConfig } from '@/lib/site-config';
+import { siteConfig, getRobotsConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Datenschutzerklärung',
@@ -7,7 +7,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/datenschutz',
   },
-  robots: { index: true, follow: true },
+  robots: getRobotsConfig(),
+  openGraph: {
+    title: 'Datenschutzerklärung | Kostenklar',
+    description: 'Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO.',
+    url: '/datenschutz',
+  },
 };
 
 export default function DatenschutzPage() {

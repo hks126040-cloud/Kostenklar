@@ -14,6 +14,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `/entruempelung-koeln-kosten`,
   },
+  openGraph: {
+    title: `Entrümpelung Köln Kosten 2026: Preise & AWB-Leitfaden | Kostenklar`,
+    description: `Was kostet eine Entrümpelung in Köln? Aktuelle m²-Preise (${city.averagePricePerSqm}), enge Veedel-Logistik, AWB-Sperrmüllabfuhr und Spartipps.`,
+    url: `/entruempelung-koeln-kosten`,
+  },
 };
 
 export default function KoelnPage() {

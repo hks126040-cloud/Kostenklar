@@ -14,6 +14,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `/entruempelung-berlin-kosten`,
   },
+  openGraph: {
+    title: `Entrümpelung Berlin Kosten 2026: Preise & BSR-Leitfaden | Kostenklar`,
+    description: `Was kostet eine Entrümpelung in Berlin? Aktuelle m²-Preise (${city.averagePricePerSqm}), Altbau-Etagenzuschläge, BSR-Sperrmüllhöfe und Spartipps.`,
+    url: `/entruempelung-berlin-kosten`,
+  },
 };
 
 export default function BerlinPage() {

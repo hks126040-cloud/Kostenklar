@@ -14,6 +14,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `/entruempelung-muenchen-kosten`,
   },
+  openGraph: {
+    title: `Entrümpelung München Kosten 2026: Preise & AWM-Tipps | Kostenklar`,
+    description: `Was kostet eine Entrümpelung in München? Aktuelle m²-Preise (${city.averagePricePerSqm}), KVR-Halteverbote, AWM-Wertstoffhöfe und Spartipps.`,
+    url: `/entruempelung-muenchen-kosten`,
+  },
 };
 
 export default function MuenchenPage() {

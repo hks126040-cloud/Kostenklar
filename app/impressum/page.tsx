@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
-import { siteConfig } from '@/lib/site-config';
+import { siteConfig, getRobotsConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Impressum',
@@ -8,7 +7,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/impressum',
   },
-  robots: { index: true, follow: true },
+  robots: getRobotsConfig(),
+  openGraph: {
+    title: 'Impressum | Kostenklar',
+    description: 'Gesetzliche Anbieterkennzeichnung nach § 5 Digitale-Dienste-Gesetz (DDG).',
+    url: '/impressum',
+  },
 };
 
 export default function ImpressumPage() {

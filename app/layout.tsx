@@ -4,7 +4,7 @@ import './globals.css';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
-import { siteConfig } from '@/lib/site-config';
+import { siteConfig, getRobotsConfig } from '@/lib/site-config';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -32,17 +32,7 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-touch-icon.png',
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
+  robots: getRobotsConfig(),
   openGraph: {
     type: 'website',
     locale: 'de_DE',
@@ -50,6 +40,20 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} – Entrümpelung Kosten Rechner`,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: ['/og-image.png'],
   },
   verification: {
     google: 'i6B4Yq58IOQudXM1CT_pEhPAS3EdqHbAso6oLal_Eik',

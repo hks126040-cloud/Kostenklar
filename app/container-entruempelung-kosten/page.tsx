@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { ContentLayout } from '@/components/content/ContentLayout';
 import { CompactCalculatorCTA } from '@/components/calculator/CompactCalculatorCTA';
 import { ResponsivePriceTable } from '@/components/ResponsiveTable';
+import { siteConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Container Entrümpelung Kosten 2026: Preise & Größen',
@@ -9,6 +10,12 @@ export const metadata: Metadata = {
     'Was kostet ein Sperrmüll-Container? Preise für 3 m³, 5 m³, 7 m³ & 10 m³, Mischabfall vs. Bauschutt, Stellgenehmigung & Kostenvergleich zur Fachfirma.',
   alternates: {
     canonical: '/container-entruempelung-kosten',
+  },
+  openGraph: {
+    title: 'Container Entrümpelung Kosten 2026: Preise & Größen | Kostenklar',
+    description:
+      'Was kostet ein Sperrmüll-Container? Preise für 3 m³, 5 m³, 7 m³ & 10 m³, Mischabfall vs. Bauschutt, Stellgenehmigung & Kostenvergleich zur Fachfirma.',
+    url: '/container-entruempelung-kosten',
   },
 };
 
@@ -37,7 +44,7 @@ export default function Page() {
       description="Preise für Absetz- und Abrollcontainer von 3 m³ bis 10 m³, Tonnensätze für Mischabfall und behördliche Genehmigungen im Überblick."
       breadcrumbLabel="Container Kosten"
       slug="container-entruempelung-kosten"
-      lastUpdated="März 2026"
+      lastUpdated={siteConfig.lastUpdatedDate}
       readingTime="6 Min."
       faqs={faqs}
     >

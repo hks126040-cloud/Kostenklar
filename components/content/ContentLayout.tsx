@@ -71,8 +71,6 @@ export function ContentLayout({
             <span>Stand: {lastUpdated}</span>
             <span>•</span>
             <span>Lesezeit: {readingTime}</span>
-            <span>•</span>
-            <span className="text-success font-medium">Fachlich redaktionell geprüft</span>
           </div>
         </header>
 

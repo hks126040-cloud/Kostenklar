@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { siteConfig } from '@/lib/site-config';
+import { siteConfig, getRobotsConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Kontakt & Über uns',
@@ -8,7 +8,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/kontakt',
   },
-  robots: { index: true, follow: true },
+  robots: getRobotsConfig(),
+  openGraph: {
+    title: `Kontakt & Über uns | ${siteConfig.name}`,
+    description:
+      `Wer hinter ${siteConfig.name} steht, unsere Mission für transparente Entrümpelungskosten und wie Sie uns erreichen.`,
+    url: '/kontakt',
+  },
 };
 
 export default function KontaktPage() {
@@ -39,8 +45,8 @@ export default function KontaktPage() {
         </p>
         <p className="mt-3 text-sm text-body-slate dark:text-gray-300 leading-relaxed">
           <strong>{siteConfig.name}</strong> ist ein unabhängiges Informations- und Vergleichsportal. Unser
-          Kostenrechner nutzt fundierte Richtwerte aus dem deutschen Entsorgungs- und
-          Handwerksgewerbe, um Bürgern vorab eine verlässliche Verhandlungsbasis zu bieten.
+          Kostenrechner nutzt marktübliche Orientierungswerte aus dem Entsorgungs- und
+          Handwerksgewerbe, um Bürgern vorab eine transparente Verhandlungsgrundlage zu bieten.
         </p>
       </div>
 

@@ -159,15 +159,9 @@ export function ResponsiveComparisonTable({
                 {row.criterion}
               </td>
               <td className="block text-xs sm:text-sm sm:table-cell sm:p-3.5 text-gray-700 dark:text-gray-300">
-                <span className="font-semibold text-gray-500 dark:text-gray-400 sm:hidden">
-                  {headers[1]}:{' '}
-                </span>
                 <span className={row.optionAClassName}>{row.optionA}</span>
               </td>
               <td className="block text-xs sm:text-sm sm:table-cell sm:p-3.5 text-gray-700 dark:text-gray-300">
-                <span className="font-semibold text-gray-500 dark:text-gray-400 sm:hidden">
-                  {headers[2]}:{' '}
-                </span>
                 <span className={row.optionBClassName}>{row.optionB}</span>
               </td>
             </tr>

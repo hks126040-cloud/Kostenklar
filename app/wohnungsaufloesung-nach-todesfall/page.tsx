@@ -2,13 +2,20 @@ import { Metadata } from 'next';
 import { ContentLayout } from '@/components/content/ContentLayout';
 import { CompactCalculatorCTA } from '@/components/calculator/CompactCalculatorCTA';
 import { ResponsivePriceTable } from '@/components/ResponsiveTable';
+import { siteConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Wohnungsauflösung nach Todesfall: Leitfaden & Erbe',
   description:
-    'Haushaltsauflösung im Trauerfall: Einfühlsamer Leitfaden für Erben. Fristen, Nachlassverbindlichkeiten, Kostenübernahme, Mietrecht & Ablauf.',
+    'Haushaltsauflösung im Trauerfall: Einfühlsamer Leitfaden für Angehörige. Fristen, Kostentragung, Nachlassverbindlichkeiten, Mietrecht & Ablauf.',
   alternates: {
     canonical: '/wohnungsaufloesung-nach-todesfall',
+  },
+  openGraph: {
+    title: 'Wohnungsauflösung nach Todesfall: Leitfaden & Erbe | Kostenklar',
+    description:
+      'Haushaltsauflösung im Trauerfall: Einfühlsamer Leitfaden für Angehörige. Fristen, Kostentragung, Nachlassverbindlichkeiten, Mietrecht & Ablauf.',
+    url: '/wohnungsaufloesung-nach-todesfall',
   },
 };
 
@@ -31,7 +38,8 @@ const faqs = [
   {
     question: 'Können die Kosten der Räumung von der Erbschaftsteuer abgesetzt werden?',
     answer:
-      'Ja. Die Kosten für die Räumung der Wohnung des Verstorbenen können in der Regel als Nachlassverbindlichkeiten steuermindernd vom Erbe abgezogen werden.',
+      // TODO: [PRÜFEN] Steuerrechtliche Einzelfallprüfung: Nachlassverbindlichkeiten nach § 10 Abs. 5 ErbStG hängen von Erbanfall und tatsächlicher Nachlassmasse ab.
+      'Die Kosten für die Räumung der Wohnung des Verstorbenen können unter bestimmten Voraussetzungen als Nachlassverbindlichkeiten steuermindernd beim Finanzamt geltend gemacht werden (Einzelfallprüfung durch Steuerberater empfohlen).',
   },
 ];
 
@@ -39,10 +47,10 @@ export default function Page() {
   return (
     <ContentLayout
       title="Wohnungsauflösung nach einem Todesfall: Leitfaden, Fristen & Erbrecht 2026"
-      description="Pietätvoller Leitfaden für Angehörige: Gesetzliches Sonderkündigungsrecht, Kostentragungspflicht der Erben, Nachlassverbindlichkeiten und Ablauf."
+      description="Pietätvoller Leitfaden für Angehörige: Gesetzliches Sonderkündigungsrecht, Fragen zur Kostentragung im Erbfall, Nachlassverbindlichkeiten und Ablauf."
       breadcrumbLabel="Todesfall & Erbe"
       slug="wohnungsaufloesung-nach-todesfall"
-      lastUpdated="März 2026"
+      lastUpdated={siteConfig.lastUpdatedDate}
       readingTime="8 Min."
       faqs={faqs}
     >

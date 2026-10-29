@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { ContentLayout } from '@/components/content/ContentLayout';
 import { CompactCalculatorCTA } from '@/components/calculator/CompactCalculatorCTA';
 import { ResponsivePriceTable } from '@/components/ResponsiveTable';
+import { siteConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Wohnungsauflösung Kosten 2026: Preise & Ablauf',
@@ -9,6 +10,12 @@ export const metadata: Metadata = {
     'Was kostet eine Wohnungsauflösung? Leitfaden für Erben & Angehörige: Preistabelle, Wertanrechnung von Nachlässen, Nachlassverbindlichkeiten & Ablauf.',
   alternates: {
     canonical: '/wohnungsaufloesung-kosten',
+  },
+  openGraph: {
+    title: 'Wohnungsauflösung Kosten 2026: Preise & Ablauf',
+    description:
+      'Was kostet eine Wohnungsauflösung? Leitfaden für Erben & Angehörige: Preistabelle, Wertanrechnung von Nachlässen, Nachlassverbindlichkeiten & Ablauf.',
+    url: '/wohnungsaufloesung-kosten',
   },
 };
 
@@ -28,10 +35,11 @@ const faqs = [
     answer:
       'Seriöse Dienstleister bieten eine DSGVO-konforme Aktenvernichtung nach DIN 66399 an. Bankbelege, Steuerunterlagen oder Patientenakten werden dabei in versiegelten Sicherheitsbehältern vernichtet.',
   },
+  // TODO: [PRÜFEN] § 35a Einstufung je nach Einzelfall
   {
     question: 'Kann die Wohnungsauflösung von der Steuer abgesetzt werden?',
     answer:
-      'Ja. Wenn Sie die Auflösung in Auftrag geben, können Sie die Lohnkosten als haushaltsnahe Dienstleistung nach § 35a EStG geltend machen (20 % von maximal 20.000 € Arbeitslohn = bis zu 4.000 € Ersparnis).',
+      'Unter bestimmten Voraussetzungen können die reinen Arbeits- und Fahrtkosten steuermindernd geltend gemacht werden (z. B. nach § 35a EStG im Rahmen haushaltsnaher Dienstleistungen bis zu 4.000 € oder Handwerkerleistungen bis zu 1.200 € Steuerermäßigung pro Jahr). Voraussetzung sind eine ordnungsgemäße Rechnung sowie unbare Zahlung per Überweisung. Zur steuerlichen Einordnung im Einzelfall sollte ein Steuerberater konsultiert werden.',
   },
   {
     question: 'Wie lange dauert eine komplette Haushaltsauflösung?',
@@ -47,7 +55,7 @@ export default function Page() {
       description="Preistabelle für Haushaltsauflösungen, Wertanrechnung von Nachlassgegenständen und rechtliche Hinweise für Erben."
       breadcrumbLabel="Wohnungsauflösung"
       slug="wohnungsaufloesung-kosten"
-      lastUpdated="März 2026"
+      lastUpdated={siteConfig.lastUpdatedDate}
       readingTime="8 Min."
       faqs={faqs}
     >
@@ -118,11 +126,13 @@ export default function Page() {
         <h2 className="text-2xl font-bold text-brand-ink dark:text-white pt-4">
           Nachlass & Erbe: Wer haftet für die Kosten?
         </h2>
+        {/* TODO: [PRÜFEN] Rechtliche und steuerliche Einzelfallprüfung für Erben / Nachlassverbindlichkeiten */}
         <p>
-          Als Rechtsnachfolger treten Erben in die Pflichten ein und tragen die anfallenden
-          Räumungskosten. Diese Aufwendungen können jedoch in der Regel als
-          Nachlassverbindlichkeiten steuermindernd beim Finanzamt geltend gemacht werden. Ist der
-          Nachlass überschuldet, besteht eine sechswöchige Frist zur Erbausschlagung ab Kenntnis.
+          Wird das Erbe angetreten, gehen vertragliche Verpflichtungen wie die Wohnungsberäumung
+          auf die Erbengemeinschaft über. Ob und in welchem Rahmen anfallende Räumungskosten als
+          Nachlassverbindlichkeiten nach § 1967 BGB steuermindernd im Rahmen der Erbschaftsteuer geltend
+          gemacht werden können, hängt vom konkreten Einzelfall ab. Bei Überschuldung des Nachlasses
+          besteht die gesetzliche Möglichkeit einer Erbausschlagung (Regelfrist: 6 Wochen ab Kenntnis).
         </p>
 
         <h2 className="text-2xl font-bold text-brand-ink dark:text-white pt-4">

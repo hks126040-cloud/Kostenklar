@@ -4,6 +4,7 @@ import { ContentLayout } from '@/components/content/ContentLayout';
 import { CompactCalculatorCTA } from '@/components/calculator/CompactCalculatorCTA';
 import { ResponsiveKeyValueTable } from '@/components/ResponsiveTable';
 import { CityData } from '@/lib/cities/types';
+import { siteConfig } from '@/lib/site-config';
 
 interface CityPageTemplateProps {
   city: CityData;
@@ -19,7 +20,7 @@ export function CityPageTemplate({ city }: CityPageTemplateProps) {
       description={description}
       breadcrumbLabel={city.cityName}
       slug={`entruempelung-${city.slug}-kosten`}
-      lastUpdated="März 2026"
+      lastUpdated={siteConfig.lastUpdatedDate}
       readingTime="6 Min."
       faqs={city.localFaqs}
     >

@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { ContentLayout } from '@/components/content/ContentLayout';
 import { CompactCalculatorCTA } from '@/components/calculator/CompactCalculatorCTA';
 import { ResponsivePriceTable } from '@/components/ResponsiveTable';
+import { siteConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Haus entrümpeln Kosten 2026: Preise & Ablauf',
@@ -9,6 +10,12 @@ export const metadata: Metadata = {
     'Was kostet es, ein ganzes Haus zu entrümpeln? Kostenfaktoren für Einfamilienhäuser, Keller, Dachboden, Garage & Garten. Inkl. Spartipps & Richtwerten.',
   alternates: {
     canonical: '/haus-entruempeln-kosten',
+  },
+  openGraph: {
+    title: 'Haus entrümpeln Kosten 2026: Preise & Ablauf | Kostenklar',
+    description:
+      'Was kostet es, ein ganzes Haus zu entrümpeln? Kostenfaktoren für Einfamilienhäuser, Keller, Dachboden, Garage & Garten. Inkl. Spartipps & Richtwerten.',
+    url: '/haus-entruempeln-kosten',
   },
 };
 
@@ -47,7 +54,7 @@ export default function Page() {
       description="Preistabelle für Einfamilienhäuser, Reihenhäuser, Keller, Dachböden und Nebengebäude inklusive Tipps zur Kostenreduzierung."
       breadcrumbLabel="Haus entrümpeln"
       slug="haus-entruempeln-kosten"
-      lastUpdated="März 2026"
+      lastUpdated={siteConfig.lastUpdatedDate}
       readingTime="7 Min."
       faqs={faqs}
     >

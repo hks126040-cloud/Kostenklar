@@ -14,6 +14,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `/entruempelung-frankfurt-kosten`,
   },
+  openGraph: {
+    title: `Entrümpelung Frankfurt am Main Kosten 2026: Preise & FES-Tipps | Kostenklar`,
+    description: `Was kostet eine Entrümpelung in Frankfurt? Aktuelle m²-Preise (${city.averagePricePerSqm}), FES-Sperrmüll, Halteverbotszonen im Westend und Spartipps.`,
+    url: `/entruempelung-frankfurt-kosten`,
+  },
 };
 
 export default function FrankfurtPage() {

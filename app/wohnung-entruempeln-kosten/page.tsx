@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { ContentLayout } from '@/components/content/ContentLayout';
 import { CompactCalculatorCTA } from '@/components/calculator/CompactCalculatorCTA';
 import { ResponsivePriceTable } from '@/components/ResponsiveTable';
+import { siteConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Wohnung entrümpeln: Kosten & Ablauf 2026',
@@ -9,6 +10,12 @@ export const metadata: Metadata = {
     'Was kostet eine Wohnungsentrümpelung? Typische Kosten für 1- bis 4-Zimmer-Wohnungen, Mietrecht-Vorgaben, besenreine Übergabe und Festpreise im Vergleich.',
   alternates: {
     canonical: '/wohnung-entruempeln-kosten',
+  },
+  openGraph: {
+    title: 'Wohnung entrümpeln: Kosten & Ablauf 2026',
+    description:
+      'Was kostet eine Wohnungsentrümpelung? Typische Kosten für 1- bis 4-Zimmer-Wohnungen, Mietrecht-Vorgaben, besenreine Übergabe und Festpreise im Vergleich.',
+    url: '/wohnung-entruempeln-kosten',
   },
 };
 
@@ -47,7 +54,7 @@ export default function Page() {
       description="Typische Preise nach Zimmeranzahl, rechtliche Pflichten bei Mietvertragsende und Checkliste für die besenreine Wohnungsübergabe."
       breadcrumbLabel="Wohnung entrümpeln"
       slug="wohnung-entruempeln-kosten"
-      lastUpdated="März 2026"
+      lastUpdated={siteConfig.lastUpdatedDate}
       readingTime="7 Min."
       faqs={faqs}
     >

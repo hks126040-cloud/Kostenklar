@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { ContentLayout } from '@/components/content/ContentLayout';
 import { CompactCalculatorCTA } from '@/components/calculator/CompactCalculatorCTA';
 import { ResponsivePriceTable } from '@/components/ResponsiveTable';
+import { siteConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Messie-Wohnung entrümpeln Kosten 2026: Leitfaden',
@@ -9,6 +10,12 @@ export const metadata: Metadata = {
     'Was kostet die Entrümpelung einer Messie-Wohnung? Preise pro m², Desinfektion, Schädlingsbekämpfung, PSA-Schutzkleidung & diskreter Ablauf im Überblick.',
   alternates: {
     canonical: '/messie-wohnung-entruempeln-kosten',
+  },
+  openGraph: {
+    title: 'Messie-Wohnung entrümpeln Kosten 2026: Leitfaden',
+    description:
+      'Was kostet die Entrümpelung einer Messie-Wohnung? Preise pro m², Desinfektion, Schädlingsbekämpfung, PSA-Schutzkleidung & diskreter Ablauf im Überblick.',
+    url: '/messie-wohnung-entruempeln-kosten',
   },
 };
 
@@ -37,7 +44,7 @@ export default function Page() {
       description="Ratgeber für Angehörige, Vermieter und Betreuer: Kostenfaktoren bei extremer Vermüllung, Desinfektion, Schädlingsbekämpfung und Ozonbehandlung."
       breadcrumbLabel="Messie-Wohnung"
       slug="messie-wohnung-entruempeln-kosten"
-      lastUpdated="März 2026"
+      lastUpdated={siteConfig.lastUpdatedDate}
       readingTime="7 Min."
       faqs={faqs}
     >

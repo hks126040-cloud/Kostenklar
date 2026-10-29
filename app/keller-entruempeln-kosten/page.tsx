@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { ContentLayout } from '@/components/content/ContentLayout';
 import { CompactCalculatorCTA } from '@/components/calculator/CompactCalculatorCTA';
 import { ResponsivePriceTable } from '@/components/ResponsiveTable';
+import { siteConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Keller entrümpeln Kosten 2026: Preise & Spartipps',
@@ -9,6 +10,12 @@ export const metadata: Metadata = {
     'Was kostet eine Kellerentrümpelung? Typische Preise für Kellerabteile & Dachböden, Mindestauftragswerte, Sondermüll und Spartipps im Überblick.',
   alternates: {
     canonical: '/keller-entruempeln-kosten',
+  },
+  openGraph: {
+    title: 'Keller entrümpeln Kosten 2026: Preise & Spartipps | Kostenklar',
+    description:
+      'Was kostet eine Kellerentrümpelung? Typische Preise für Kellerabteile & Dachböden, Mindestauftragswerte, Sondermüll und Spartipps im Überblick.',
+    url: '/keller-entruempeln-kosten',
   },
 };
 
@@ -37,7 +44,7 @@ export default function Page() {
       description="Übersicht der Kosten für Kellerräume, Dachböden und Speicherabteile. Warum steile Treppen und Sondermüll den Preis beeinflussen."
       breadcrumbLabel="Keller & Dachboden"
       slug="keller-entruempeln-kosten"
-      lastUpdated="März 2026"
+      lastUpdated={siteConfig.lastUpdatedDate}
       readingTime="5 Min."
       faqs={faqs}
     >

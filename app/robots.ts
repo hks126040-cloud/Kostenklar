@@ -1,10 +1,22 @@
 import { MetadataRoute } from 'next';
-import { getBaseUrl } from '@/lib/site-config';
+import { getBaseUrl, isNoIndexActive } from '@/lib/site-config';
 import { headers } from 'next/headers';
 
 export const dynamic = 'force-dynamic';
 
 export default async function robots(): Promise<MetadataRoute.Robots> {
+  // Global noindex switch: disallow all and omit sitemap when on vercel.app or NEXT_PUBLIC_NOINDEX=true
+  if (isNoIndexActive()) {
+    return {
+      rules: [
+        {
+          userAgent: '*',
+          disallow: ['/'],
+        },
+      ],
+    };
+  }
+
   let baseUrl = getBaseUrl();
   try {
     const headersList = await headers();
