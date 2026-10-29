@@ -47,6 +47,9 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     siteName: siteConfig.name,
   },
+  verification: {
+    google: 'i6B4Yq58IOQudXM1CT_pEhPAS3EdqHbAso6oLal_Eik',
+  },
 };
 
 export default function RootLayout({
