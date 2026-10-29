@@ -63,16 +63,16 @@ export default function DatenschutzPage() {
 
         <section>
           <h2 className="text-lg font-bold text-brand-ink dark:text-white mb-2">
-            4. Datenbank und Speicherung (Supabase)
+            4. Datenbank und Speicherung (Neon Serverless PostgreSQL)
           </h2>
           <p>
             Zur sicheren Speicherung von Lead-Anfragen nutzen wir den Datenbankdienst{' '}
-            <strong>Supabase Inc.</strong> Die Daten werden ausschließlich in einem ISO-27001-zertifizierten
-            Rechenzentrum in <strong>Frankfurt am Main (Deutschland / EU)</strong> gespeichert.
+            <strong>Neon, Inc.</strong> Die Daten werden ausschließlich in einem ISO-27001-zertifizierten
+            AWS-Rechenzentrum in <strong>Frankfurt am Main (Region eu-central-1, Deutschland / EU)</strong> verarbeitet und verschlüsselt gespeichert.
           </p>
           <p className="mt-2">
             Rechtsgrundlage ist die Erfüllung vorvertraglicher Maßnahmen bzw. Ihre Einwilligung gem.{' '}
-            <strong>Art. 6 Abs. 1 lit. a und b DSGVO</strong>.
+            <strong>Art. 6 Abs. 1 lit. a und b DSGVO</strong>. Ein Auftragsverarbeitungsvertrag (AVV / DPA) nach Art. 28 DSGVO ist vereinbart.
           </p>
         </section>
 
