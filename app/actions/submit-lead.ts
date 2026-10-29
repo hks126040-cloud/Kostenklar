@@ -2,6 +2,7 @@
 
 import { z } from 'zod';
 import { createClient } from '@supabase/supabase-js';
+import { neon } from '@neondatabase/serverless';
 import crypto from 'crypto';
 import { headers } from 'next/headers';
 import { CONSENT_TEXTS } from '@/lib/consent-config';
@@ -69,15 +70,52 @@ export async function submitLeadAction(data: unknown) {
     const ipSalt = process.env.IP_HASH_SALT || 'kostenklar_default_secure_salt_2026';
     const ipHash = crypto.createHash('sha256').update(`${clientIp}:${ipSalt}`).digest('hex');
 
-    // 5. Supabase Insertion
+    // 5. Database Insertion (Neon Serverless Postgres or Supabase)
+    const databaseUrl = process.env.DATABASE_URL;
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
     let leadId = crypto.randomUUID();
+    const consentText = CONSENT_TEXTS[parsed.consentVersion] ?? 'Einwilligung erteilt';
 
-    if (supabaseUrl && supabaseServiceKey) {
+    if (databaseUrl) {
+      try {
+        const sql = neon(databaseUrl);
+        const rows = await sql`
+          INSERT INTO public.leads (
+            full_name, email, phone, postal_code, preferred_date, notes,
+            calculator_input, calculator_result, source_page,
+            consent_given, consent_version, consent_text, consent_at,
+            ip_hash, user_agent, status
+          ) VALUES (
+            ${parsed.fullName.trim()},
+            ${parsed.email.trim().toLowerCase()},
+            ${parsed.phone.trim()},
+            ${parsed.postalCode},
+            ${parsed.preferredDate},
+            ${parsed.notes?.trim() || null},
+            ${JSON.stringify(parsed.calculatorInput)},
+            ${JSON.stringify(parsed.calculatorResult)},
+            ${parsed.sourcePage},
+            true,
+            ${parsed.consentVersion},
+            ${consentText},
+            NOW(),
+            ${ipHash},
+            ${userAgent},
+            'new'
+          )
+          RETURNING id;
+        `;
+        if (rows && rows.length > 0 && rows[0].id) {
+          leadId = rows[0].id;
+        }
+      } catch (dbError) {
+        console.error('Neon database lead insert error:', dbError);
+        return { success: false, error: 'Fehler beim Speichern der Anfrage in der Datenbank.' };
+      }
+    } else if (supabaseUrl && supabaseServiceKey) {
       const supabase = createClient(supabaseUrl, supabaseServiceKey);
-      const consentText = CONSENT_TEXTS[parsed.consentVersion] ?? 'Einwilligung erteilt';
 
       const { data: leadRecord, error: dbError } = await supabase
         .from('leads')
@@ -111,7 +149,7 @@ export async function submitLeadAction(data: unknown) {
         leadId = leadRecord.id;
       }
     } else {
-      console.log('Mock Lead captured (Supabase env not configured):', {
+      console.log('Mock Lead captured (No Database env configured):', {
         id: leadId,
         fullName: parsed.fullName,
         email: parsed.email,
