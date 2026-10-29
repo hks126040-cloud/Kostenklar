@@ -7,10 +7,6 @@ const city = CITIES_DATA.koeln;
 export const metadata: Metadata = {
   title: `Entrümpelung Köln Kosten 2026: Preise & AWB-Leitfaden`,
   description: `Was kostet eine Entrümpelung in Köln? Durchschnittspreise (${city.averagePricePerSqm}), Halteverbotszone, AWB-Sperrmüllregeln und Spartipps für Kölner Veedel.`,
-  robots: {
-    index: false,
-    follow: false,
-  },
   alternates: {
     canonical: `/entruempelung-koeln-kosten`,
   },

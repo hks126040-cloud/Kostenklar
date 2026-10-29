@@ -7,10 +7,6 @@ const city = CITIES_DATA.frankfurt;
 export const metadata: Metadata = {
   title: `Entrümpelung Frankfurt Kosten 2026: Preise & FES-Tipps`,
   description: `Was kostet eine Entrümpelung in Frankfurt am Main? Quadratmeterpreise (${city.averagePricePerSqm}), FES-Sperrmüll, Halteverbot und Firmenauflösungen.`,
-  robots: {
-    index: false,
-    follow: false,
-  },
   alternates: {
     canonical: `/entruempelung-frankfurt-kosten`,
   },
