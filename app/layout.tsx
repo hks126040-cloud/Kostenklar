@@ -25,7 +25,10 @@ export const metadata: Metadata = {
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
   icons: {
-    icon: '/favicon.ico',
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-48.png', sizes: '48x48', type: 'image/png' },
+    ],
     apple: '/apple-touch-icon.png',
   },
   robots: {
