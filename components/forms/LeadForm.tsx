@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { submitLeadAction } from '@/app/actions/submit-lead';
 import { CURRENT_CONSENT_VERSION } from '@/lib/consent-config';
+import { analytics } from '@/lib/analytics';
 import { PricingResult } from '@/lib/pricing';
 import { CalculatorInput } from '@/lib/schema';
 
@@ -65,6 +66,7 @@ export function LeadForm({
       const response = await submitLeadAction(formData);
 
       if (response.success && response.redirectUrl) {
+        analytics.trackLeadSubmitted(sourcePage, postalCode);
         router.push(response.redirectUrl);
       } else {
         setFormError(response.error || 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.');

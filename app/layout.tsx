@@ -3,6 +3,7 @@ import { inter } from './fonts';
 import './globals.css';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 import { siteConfig } from '@/lib/site-config';
 
 export const viewport: Viewport = {
@@ -63,6 +64,7 @@ export default function RootLayout({
   return (
     <html lang="de" className={inter.variable}>
       <body className="flex min-h-screen flex-col font-sans antialiased bg-[#F7F9FC] text-[#0B1B3A] dark:bg-[#0B1B3A] dark:text-[#F7F9FC]">
+        <GoogleAnalytics />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
