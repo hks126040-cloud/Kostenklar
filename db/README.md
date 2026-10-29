@@ -34,3 +34,4 @@ Run the built-in function to anonymize expired leads older than 180 days:
 ```sql
 SELECT public.scrub_expired_leads();
 ```
+

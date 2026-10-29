@@ -59,3 +59,4 @@ BEGIN
         AND status != 'archived';
 END;
 $$ LANGUAGE plpgsql;
+
