@@ -52,17 +52,17 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
         {/* Top Header: Brand + Direct Contact Line (Netflix Style) */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-brand-line/80 dark:border-brand-darkLine/80">
-          <Link href="/" className="inline-flex items-center" aria-label="Kostenklar Startseite">
+          <Link href="/" className="inline-flex items-center" aria-label={`${siteConfig.name} Startseite`}>
             <Image
               src="/logo-light.svg"
-              alt="Kostenklar Logo"
+              alt={`${siteConfig.name} Logo`}
               width={130}
               height={26}
               className="h-6 w-auto object-contain dark:hidden"
             />
             <Image
               src="/logo-dark.svg"
-              alt="Kostenklar Logo"
+              alt={`${siteConfig.name} Logo`}
               width={130}
               height={26}
               className="hidden h-6 w-auto object-contain dark:block"

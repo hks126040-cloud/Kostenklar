@@ -24,7 +24,7 @@ const ARTIFACT_DIR = 'C:/Users/ASUS/.gemini/antigravity/brain/ee808d7f-8b73-466a
 
     // Check external links for rel="noopener noreferrer"
     const externalLinks = await page.evaluate(() => {
-      const links = Array.from(document.querySelectorAll('a[href^="http"]:not([href*="kostenklar.de"])'));
+      const links = Array.from(document.querySelectorAll('a[href^="http"]')).filter(l => !l.href.includes(window.location.hostname));
       return links.map(l => ({
         href: l.href,
         rel: l.getAttribute('rel') || '',

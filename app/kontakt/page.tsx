@@ -4,7 +4,7 @@ import { siteConfig } from '@/lib/site-config';
 export const metadata: Metadata = {
   title: 'Kontakt & Über uns',
   description:
-    'Wer hinter Kostenklar steht, unsere Mission für transparente Entrümpelungskosten und wie Sie uns erreichen.',
+    `Wer hinter ${siteConfig.name} steht, unsere Mission für transparente Entrümpelungskosten und wie Sie uns erreichen.`,
   alternates: {
     canonical: '/kontakt',
   },
@@ -12,11 +12,13 @@ export const metadata: Metadata = {
 };
 
 export default function KontaktPage() {
+  const partnerEmail = `partner@${siteConfig.domain}`;
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
       <header className="mb-10 text-center">
         <h1 className="text-3xl font-extrabold text-brand-ink dark:text-white sm:text-4xl">
-          Über Kostenklar & Kontakt
+          Über {siteConfig.name} & Kontakt
         </h1>
         <p className="mt-4 text-base text-body-slate dark:text-gray-300">
           Unser Ziel ist es, den oft undurchsichtigen Markt für Haushaltsauflösungen und
@@ -36,7 +38,7 @@ export default function KontaktPage() {
           Nachforderungen aus.
         </p>
         <p className="mt-3 text-sm text-body-slate dark:text-gray-300 leading-relaxed">
-          <strong>Kostenklar</strong> ist ein unabhängiges Informations- und Vergleichsportal. Unser
+          <strong>{siteConfig.name}</strong> ist ein unabhängiges Informations- und Vergleichsportal. Unser
           Kostenrechner nutzt fundierte Richtwerte aus dem deutschen Entsorgungs- und
           Handwerksgewerbe, um Bürgern vorab eine verlässliche Verhandlungsbasis zu bieten.
         </p>
@@ -67,14 +69,13 @@ export default function KontaktPage() {
             Sind Sie ein qualifizierter Entrümpelungsfachbetrieb und suchen qualifizierte Kundenanfragen aus Ihrer Region?
           </p>
           <a
-            href="mailto:partner@kostenklar.de"
+            href={`mailto:${partnerEmail}`}
             className="mt-4 inline-block font-semibold text-brand hover:underline text-sm"
           >
-            partner@kostenklar.de
+            {partnerEmail}
           </a>
         </div>
       </div>
     </div>
   );
 }
-

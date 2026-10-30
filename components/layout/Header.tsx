@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { siteConfig } from '@/lib/site-config';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -35,13 +36,13 @@ export function Header() {
           <Link
             href="/"
             className="flex items-center gap-2 group shrink-0"
-            aria-label="Kostenklar Startseite"
+            aria-label={`${siteConfig.name} Startseite`}
             onClick={closeMenu}
           >
             <div className="flex items-center">
               <Image
                 src="/logo-light.svg"
-                alt="Kostenklar Logo"
+                alt={`${siteConfig.name} Logo`}
                 width={160}
                 height={32}
                 priority
@@ -49,7 +50,7 @@ export function Header() {
               />
               <Image
                 src="/logo-dark.svg"
-                alt="Kostenklar Logo"
+                alt={`${siteConfig.name} Logo`}
                 width={160}
                 height={32}
                 priority
@@ -138,14 +139,14 @@ export function Header() {
                 <Link href="/" onClick={closeMenu} className="flex items-center">
                   <Image
                     src="/logo-light.svg"
-                    alt="Kostenklar Logo"
+                    alt={`${siteConfig.name} Logo`}
                     width={130}
                     height={26}
                     className="h-6 w-auto object-contain dark:hidden"
                   />
                   <Image
                     src="/logo-dark.svg"
-                    alt="Kostenklar Logo"
+                    alt={`${siteConfig.name} Logo`}
                     width={130}
                     height={26}
                     className="hidden h-6 w-auto object-contain dark:block"

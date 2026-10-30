@@ -67,7 +67,7 @@ export async function submitLeadAction(data: unknown) {
     const forwardedFor = headerList.get('x-forwarded-for') || '127.0.0.1';
     const clientIp = forwardedFor.split(',')[0].trim();
     const userAgent = headerList.get('user-agent') || 'unknown';
-    const ipSalt = process.env.IP_HASH_SALT || 'kostenklar_default_secure_salt_2026';
+    const ipSalt = process.env.IP_HASH_SALT || 'app_default_secure_salt_2026';
     const ipHash = crypto.createHash('sha256').update(`${clientIp}:${ipSalt}`).digest('hex');
 
     // 5. Database Insertion (Neon Serverless Postgres or Supabase)

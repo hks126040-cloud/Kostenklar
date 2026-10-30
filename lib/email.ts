@@ -77,7 +77,7 @@ export async function sendAdminLeadAlertEmail(lead: LeadEmailData) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: `Kostenklar Leads <leads@${siteConfig.domain}>`,
+        from: `${siteConfig.name} Leads <leads@${siteConfig.domain}>`,
         to: [toEmail],
         subject: emailSubject,
         html: emailHtml,

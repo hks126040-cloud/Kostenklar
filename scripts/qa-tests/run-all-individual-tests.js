@@ -38,11 +38,13 @@ const ARTIFACT_DIR = 'C:/Users/ASUS/.gemini/antigravity/brain/ee808d7f-8b73-466a
     // A2: External links security
     await page.goto(`${BASE_URL}/entruempelung-berlin-kosten`, { waitUntil: 'networkidle' });
     const extLinks = await page.evaluate(() => {
-      return Array.from(document.querySelectorAll('a[href^="http"]:not([href*="kostenklar.de"])')).map(a => ({
-        href: a.href,
-        rel: a.getAttribute('rel') || '',
-        target: a.getAttribute('target') || '',
-      }));
+      return Array.from(document.querySelectorAll('a[href^="http"]'))
+        .filter(a => !a.href.includes(window.location.hostname))
+        .map(a => ({
+          href: a.href,
+          rel: a.getAttribute('rel') || '',
+          target: a.getAttribute('target') || '',
+        }));
     });
     const unsecure = extLinks.filter(l => !l.rel.includes('noopener'));
     record(
